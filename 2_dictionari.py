@@ -62,6 +62,15 @@ def obrisi_rec(eng_na_srp, srp_na_eng, eng_rec):
         print(f"Reč '{eng_rec}' nije pronađena u rečniku.")
 
 
+def prikazi_recnike(recnik, jezik):
+    if recnik:
+        print(f"\nIzlistavanje {jezik} rečnika:\n")
+        for rec, prevod in recnik.items():
+            print(f"{rec} -> {prevod}")
+    else:
+        print(f"{jezik} rečnik je prazan.")
+
+
 def glavni_meni():
     eng_na_srp, srp_na_eng = ucitaj_recnike()
 
@@ -71,9 +80,10 @@ def glavni_meni():
         print("2. Pretraži reč")
         print("3. Ažuriraj prevod")
         print("4. Izbriši reč")
-        print("5. Izlaz")
+        print("5. Izlistaj ceo rečnik")
+        print("6. Izlaz")
 
-        izbor = input("Unesite opciju (1-5): ")
+        izbor = input("Unesite opciju (1-6): ")
 
         if izbor == "1":
             eng_rec = input("Unesite englesku reč: ")
@@ -98,6 +108,13 @@ def glavni_meni():
             obrisi_rec(eng_na_srp, srp_na_eng, eng_rec)
 
         elif izbor == "5":
+            izlistavanje_izbor = input("Izlistaj (1) Englesko-Srpski ili (2) Srpsko-Engleski rečnik: ")
+            if izlistavanje_izbor == "1":
+                prikazi_recnike(eng_na_srp, "Englesko-Srpski")
+            else:
+                prikazi_recnike(srp_na_eng, "Srpsko-Engleski")
+
+        elif izbor == "6":
             print("Izlaz iz programa.")
             break
 
